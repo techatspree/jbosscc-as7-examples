@@ -1,0 +1,17 @@
+JBoss AS 7 Webservice Example
+----------------------------------------------------------------------------------------------------------------------------------------
+
+1. Build the example with maven 
+	
+	mvn clean package
+	
+2. Deploy  the webservice 
+	cp /webservice-example/webservice-example-ejb/target/webservice-example-ejb-1.0-SNAPSHOT.jar $JBOSS_HOME/standalone/deployments
+	
+3. Execute the Example Client Application 
+	webservice-example-client
+	
+4. Deploy the EJB Client Example	
+	cp /webservice-example/webservice-example-ear/target/webservice-example-ear $JBOSS_HOME/standalone/deployments
+	
+5. 	Navigate to http://localhost:8080/webservice-example
