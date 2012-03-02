@@ -20,9 +20,10 @@
          <artifactId>webservice-example-web</artifactId>
          <type>war</type>
       </dependency>
+
       <dependency>
          <groupId>de.akquinet.jbosscc</groupId>
-         <artifactId>webservice-example-ejb</artifactId>
+         <artifactId>webservice-example-ejbclient</artifactId>
          <type>ejb</type>
       </dependency>
 

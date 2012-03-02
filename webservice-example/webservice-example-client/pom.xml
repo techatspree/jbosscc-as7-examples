@@ -104,21 +104,36 @@
 				<configuration>
 					<wsdls>
 						<wsdl>${project.build.directory}/wsprovide/resources/GreetingWebserviceEndpointService.wsdl</wsdl>
+						<wsdl>${project.build.directory}/wsprovide/resources/OrderWebserviceEndpointService.wsdl</wsdl>
 					</wsdls>
 					<targetPackage>de.akquinet.jbosscc.webservice</targetPackage>
-					<endpointClass>de.akquinet.jbosscc.webservice.GreetingWebserviceEndpoint</endpointClass>
 					<generateWsdl>true</generateWsdl>
 					<extension>true</extension>
 					<target>2.1</target>
 				</configuration>
 				<executions>
 					<execution>
-						<id>provide</id>
+						<id>provide-greeting</id>
 						<goals>
 							<goal>wsprovide</goal>
 						</goals>
 						<phase>generate-sources</phase>
+						<configuration>
+							<endpointClass>de.akquinet.jbosscc.webservice.GreetingWebserviceEndpoint</endpointClass>
+						</configuration>
 					</execution>
+
+					<execution>
+						<id>provide-order</id>
+						<goals>
+							<goal>wsprovide</goal>
+						</goals>
+						<phase>generate-sources</phase>
+						<configuration>
+							<endpointClass>de.akquinet.jbosscc.webservice.order.OrderWebserviceEndpoint</endpointClass>
+						</configuration>
+					</execution>
+
 					<execution>
 						<id>consume</id>
 						<goals>

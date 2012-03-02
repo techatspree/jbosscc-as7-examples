@@ -8,7 +8,12 @@
    <ui:define name="content">
 
 
-
+	<h:form>
+		<h:messages globalOnly="true" />
+		<h:outputLabel for="productInput" value="Product:"/>
+		<h:inputText required="true" id="productInput" value="#{orderService.product}" />
+		<h:commandButton action="#{orderService.order}" value="Order" />
+	</h:form>
 
 
    </ui:define>

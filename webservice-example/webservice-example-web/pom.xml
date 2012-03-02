@@ -18,7 +18,7 @@
 		<!-- Dependency on the EJB module so we can use it's services if needed -->
 		<dependency>
 			<groupId>de.akquinet.jbosscc</groupId>
-			<artifactId>webservice-example-ejb</artifactId>
+			<artifactId>webservice-example-ejbclient</artifactId>
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>

@@ -60,6 +60,20 @@
 
 			<dependency>
 				<groupId>de.akquinet.jbosscc</groupId>
+				<artifactId>webservice-example-ejbclient</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<type>ejb</type>
+			</dependency>
+
+			<dependency>
+				<groupId>de.akquinet.jbosscc</groupId>
+				<artifactId>webservice-example-client</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<type>jar</type>
+			</dependency>
+
+			<dependency>
+				<groupId>de.akquinet.jbosscc</groupId>
 				<artifactId>webservice-example-web</artifactId>
 				<version>1.0-SNAPSHOT</version>
 				<type>war</type>
@@ -211,6 +225,7 @@
 
 	<modules>
 		<module>webservice-example-ejb</module>
+		<module>webservice-example-ejbclient</module>
 		<module>webservice-example-web</module>
 		<module>webservice-example-ear</module>
 		<module>webservice-example-client</module>
