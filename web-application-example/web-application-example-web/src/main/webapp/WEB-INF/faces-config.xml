@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is not required if you don't need any extra configuration. -->
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<!-- This descriptor activates the JSF 2.0 Servlet -->
+
+	<!-- Write your navigation rules here. You are encouraged to use CDI for 
+		creating @Named managed beans. -->
+
+	<navigation-rule>
+
+		<navigation-case>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>view</from-outcome>
+			<to-view-id>/blogEntry.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{blogEntryService.newInstance}</from-action>
+			<from-outcome>true</from-outcome>
+			<to-view-id>/blogEntryEdit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+
+		<navigation-case>
+			<from-action>#{blogEntryService.persistOrUpdate}</from-action>
+			<from-outcome>true</from-outcome>
+			<to-view-id>/blogEntry.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{authenticator.logout}</from-action>
+			<from-outcome>true</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect include-view-params="false" />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/blogEntry.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/blogEntryEdit.xhtml</to-view-id>
+		</navigation-case>
+		
+		
+		<navigation-case>
+		<from-action>#{blogEntryService.delete}</from-action>
+			<from-outcome>true</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect include-view-params="false" />
+		</navigation-case>
+
+	</navigation-rule>
+
+
+
+</faces-config>

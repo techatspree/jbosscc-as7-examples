@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html">
+
+	<div style="color: #FFFFFF;">
+		<div style="float: left; font-size: 2.5em;">
+			<p>Java EE Blog!</p>
+		</div>
+
+		<div style="float: right;">
+			<h:form>
+				<h:panelGroup rendered="#{not identity.loggedIn}">
+					<h:inputText style="width:100px;" value="#{authenticator.username}" />
+
+					<h:inputSecret style="width:100px;" value="#{authenticator.password}" />
+
+					<h:commandButton action="#{authenticator.login}" value="Login" />
+
+					<div style="font-size: smaller;">
+						<h:outputText value="fjohnson" />
+						&#160;
+						<h:outputText value="secret" />
+					</div>
+
+
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{identity.loggedIn}">
+					<h:outputText value="#{currentUser.firstname} #{currentUser.surname}"/>
+					&#160;
+					<h:commandButton action="#{blogEntryService.newInstance}" value="Add" />
+					<h:commandButton action="#{authenticator.logout}" value="Logout" />
+				</h:panelGroup>
+			</h:form>
+		</div>
+	</div>
+</ui:composition>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{blogEntryService.id}" />
+		</f:metadata>
+
+		<h:form>
+			<h:link value="&#171; Overview" outcome="index" action="#{blogEntryService.end()}"></h:link>
+		</h:form>
+
+		<div style="padding-bottom: 10px;">
+			<h2>#{blogEntryService.instance.title}</h2>
+
+			<div style="color: #AAAAAA; font-size: smaller;">
+				#{blogEntryService.instance.author.firstname}, #{blogEntryService.instance.author.surname}
+				-
+				<h:outputText value="#{blogEntryService.instance.created}">
+					<f:convertDateTime pattern="dd-MM-yyyy" />
+				</h:outputText>
+
+				<h:form rendered="#{currentUser.id eq blogEntryService.instance.author.id}">
+					<h:link value="Edit" outcome="edit">
+						<f:param name="cid" value="#{javax.enterprise.context.conversation.id}"/>
+					</h:link>
+					&#160;
+					<h:commandLink value="Delete" action="#{blogEntryService.delete}"/>
+				</h:form>
+			</div>
+		</div>
+
+		<div style="clear: both; padding-bottom: 10px; border-bottom: 1px solid; border-color: #AAAAAA;">#{blogEntryService.instance.content}</div>
+
+
+		<div style="padding: 20px 0px 20px 0px;">
+			<b>Comments</b>
+			<ui:repeat var="comment" value="#{commentListService.resultList}">
+				<div style="padding: 20px 0px 20px 0px; border-bottom: 1px solid; border-color: #AAAAAA;">
+					#{comment.content}
+
+					<div style="color: #AAAAAA; font-size: smaller;">
+						#{comment.author.firstname}, #{comment.author.surname}
+						-
+						<h:outputText value="#{comment.created}">
+							<f:convertDateTime pattern="dd-MM-yyyy" />
+						</h:outputText>
+					</div>
+				</div>
+			</ui:repeat>
+		</div>
+
+
+		<h:panelGroup rendered="#{identity.loggedIn}">
+			<h:form>
+				<h:inputTextarea style="width:99%;"  value="#{commentService.instance.content}"  rows="10"></h:inputTextarea>
+				<h:commandButton action="#{commentService.save()}" value="Save"></h:commandButton>
+			</h:form>
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>

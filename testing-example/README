@@ -1,0 +1,6 @@
+JBoss AS 7 Simple Arquillian Example
+----------------------------------------------------------------------------------------------------------------------------------------
+
+1. Build the example with maven and execute the arquillian tests
+	
+	mvn clean package -Djboss.home=$JBOSS_HOME -Pjbossas-7-managed

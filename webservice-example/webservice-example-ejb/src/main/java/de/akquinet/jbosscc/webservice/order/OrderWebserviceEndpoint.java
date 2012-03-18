@@ -6,11 +6,12 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @Stateless
-@WebService
+@WebService//(targetNamespace="https://localhost:8443")
+//@EndpointConfig(configName = "Standard WSSecurity Endpoint")
 public class OrderWebserviceEndpoint implements OrderWebservice {
 
 	@WebMethod
-	public String order(@WebParam Product product){
+	public String order(@WebParam Product product) {
 		return "Order product " + product.getName();
 	}
 

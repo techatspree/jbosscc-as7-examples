@@ -15,7 +15,6 @@
 	<name>webservice-example EJB module</name>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
@@ -31,7 +30,12 @@
 		<dependency>
 			<groupId>org.jboss.spec.javax.ws.rs</groupId>
 			<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
-			<version>1.0.0.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.ws</groupId>
+			<artifactId>jbossws-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 

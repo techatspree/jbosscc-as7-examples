@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+   template="/WEB-INF/templates/default.xhtml">
+   <ui:define name="content">
+
+		<f:metadata>
+			<f:viewParam name="result" value="#{blogEntryListService.firstResult}" />
+		</f:metadata>
+
+
+		<ui:repeat var="blogEntry" value="#{blogEntryListService.resultList}">
+			<div style="padding-bottom: 10px;">
+				<h2>#{blogEntry.title}</h2>
+
+					<div style="color: #AAAAAA; font-size: smaller;">
+					#{blogEntry.author.firstname}, #{blogEntry.author.surname}
+					-
+					<h:outputText value="#{blogEntry.created}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:outputText>
+				</div>
+			</div>
+
+			<div style="clear:both;">#{blogEntry.shortContent}</div>
+
+			<div style="padding-bottom: 10px; margin: 10px 0px 30px 0px; border-bottom: 1px solid; border-color: #AAAAAA;">
+				<h:link outcome="view" value="Read more &#187;">
+					<f:param name="id" value="#{blogEntry.id}"/>
+				</h:link>
+			</div>
+		</ui:repeat>
+
+		<div>
+	        <h:link style="float:left;" rendered="#{blogEntryListService.previousExists}" value="&#171; Previous Page">
+	            <f:param name="result" value="#{blogEntryListService.previousFirstResult}"/>
+	        </h:link>
+
+	        <h:link style="float:right;"  rendered="#{blogEntryListService.nextExists}" value="Next Page  &#187;">
+	            <f:param name="result" value="#{blogEntryListService.nextFirstResult}"/>
+	        </h:link>
+		</div>
+
+
+   </ui:define>
+</ui:composition>

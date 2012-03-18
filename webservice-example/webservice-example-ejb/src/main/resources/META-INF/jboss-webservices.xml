@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webservices xmlns="http://www.jboss.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.com/xml/ns/javaee/jbossws-web-services_1_0.xsd"
+	version="1.1">
+  <context-root>webservice</context-root>
+
+   <port-component>
+    <ejb-name>OrderWebserviceEndpoint</ejb-name>
+    <port-component-name>OrderWebserviceEndpointPort</port-component-name>
+    <port-component-uri>/OrderWebserviceEndpoint</port-component-uri>
+    <!--
+    <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    <secure-wsdl-access>true</secure-wsdl-access>
+     -->
+  </port-component>
+
+</webservices>
+

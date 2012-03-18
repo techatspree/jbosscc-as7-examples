@@ -1,1 +1,20 @@
 JBoss AS 7 Examples
+
+To run the remote client examples, a application user must be created as follows:
+
+$JBOSS_HOME/bin/add-user.sh 
+
+What type of user do you wish to add? 
+ a) Management User (mgmt-users.properties) 
+ b) Application User (application-users.properties)
+(a): b
+
+Enter the details of the new user to add.
+Realm (ApplicationRealm) : 
+Username : admin
+Password : secret
+Re-enter Password : secret 
+What roles do you want this user to belong to? (Please enter a comma separated list, or leave blank for none) : ejb,jms,admin,guest
+About to add user 'admin' for realm 'ApplicationRealm'
+Is this correct yes/no? yes
+

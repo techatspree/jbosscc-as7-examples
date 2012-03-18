@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+
+
+		<h:form>
+			<h:link value="&#171; Overview" outcome="index"></h:link>
+		</h:form>
+		<br /><br />
+		<h:form>
+			<h:outputLabel for="title" value="Title:" />
+			<br />
+			<h:inputText style="width:99%;" required="true" id="title" value="#{blogEntryService.instance.title}" />
+
+			<br /><br />
+			<h:outputLabel for="content" value="Content:" />
+
+			<br />
+			<h:inputTextarea required="true" style="width:99%;" id="content" value="#{blogEntryService.instance.content}" rows="25"></h:inputTextarea>
+			<h:commandButton action="#{blogEntryService.persistOrUpdate}" value="Save"></h:commandButton>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

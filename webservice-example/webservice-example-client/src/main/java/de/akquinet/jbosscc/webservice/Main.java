@@ -7,6 +7,7 @@ import javax.xml.namespace.QName;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+//		System.setProperty("javax.net.ssl.trustStore", "/standalone/configuration/jboss-ssl.keystore");
 		Main.sayHello();
 
 		Product product = new Product();
@@ -15,10 +16,11 @@ public class Main {
 	}
 
 	private static void sayHello() throws Exception {
+
 		QName qname = new QName("http://webservice.jbosscc.akquinet.de/",
 				"GreetingWebserviceEndpointService");
 		URL url = new URL(
-				"http://localhost:8080/webservice-example-ejb-1.0-SNAPSHOT/GreetingWebserviceEndpoint?WSDL");
+				"http://localhost:8080/webservice/GreetingWebserviceEndpoint?WSDL");
 
 		GreetingWebserviceEndpointService service = new GreetingWebserviceEndpointService(
 				url, qname);
@@ -31,7 +33,7 @@ public class Main {
 		QName qname = new QName("http://order.webservice.jbosscc.akquinet.de/",
 				"OrderWebserviceEndpointService");
 		URL url = new URL(
-				"http://localhost:8080/webservice-example-ejb-1.0-SNAPSHOT/OrderWebserviceEndpoint?WSDL");
+				"http://localhost:8080/webservice/OrderWebserviceEndpoint?WSDL");
 
 		OrderWebserviceEndpointService service = new OrderWebserviceEndpointService(
 				url, qname);
@@ -39,6 +41,5 @@ public class Main {
 		String order = port.order(product);
 		System.out.println(order);
 	}
-
 
 }

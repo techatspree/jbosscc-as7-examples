@@ -1,0 +1,10 @@
+JBoss AS 7 EJB CMT Example
+----------------------------------------------------------------------------------------------------------------------------------------
+
+1a. Build the example with maven 
+	
+	mvn clean package -DskipTests
+
+1b. Build the example with maven and execute the arquillian tests
+	
+	mvn clean package -Djboss.home=$JBOSS_HOME -Pjbossas-7-managed
