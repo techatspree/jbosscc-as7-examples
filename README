@@ -1,6 +1,6 @@
 JBoss AS 7 Examples
 
-To run the remote client examples, a application user must be created as follows:
+To run the remote client examples, an application user must be created as follows:
 
 $JBOSS_HOME/bin/add-user.sh 
 
