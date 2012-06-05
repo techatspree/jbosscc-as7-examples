@@ -1,0 +1,15 @@
+
+Description
+-----------
+
+This demo will show clustering of stateless- and stateful-session-beans and also clustering of servlets on a jboss-server. It has been tested unter jboss 7.1.2.Final (which is in fact no real release), see
+	https://github.com/jbossas/jboss-as/zipball/7.1.2.Final
+
+There will soon (today is 5/24/2012) be a blogpost on http://blog.akquinet.de/ using and explaining this demo.
+
+Compilation
+-----------
+
+You will need maven to compile this easily. Just execute
+	mvn package
+And you will find the resulting .ear in ClusterDemoEAR/target
