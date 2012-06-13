@@ -1,0 +1,17 @@
+
+Description
+-----------
+
+This demo will show clustering of stateless- and stateful-session-beans. The stateful-session-bean is associated to the HTTP session. The HTTP Session will replicated to all cluster nodes.
+
+It has been tested unter jboss 7.1.2.Final (which is in fact no real release), see
+	https://github.com/jbossas/jboss-as/zipball/7.1.2.Final
+
+There is a blogpost on http://blog.akquinet.de/ with a detailed description and explanation.
+
+
+Build
+-----------
+
+To compile the application you need maven. Just execute
+	mvn package
