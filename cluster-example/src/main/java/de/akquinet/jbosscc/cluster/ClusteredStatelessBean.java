@@ -4,17 +4,20 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Logger;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 
 import org.jboss.ejb3.annotation.Clustered;
 
 @Stateless
+@Remote(ClusteredStateless.class)
 @Clustered
 @Named
-public class ClusteredStatelessBean {
+public class ClusteredStatelessBean implements ClusteredStateless {
 	private final static Logger LOG = Logger.getLogger(ClusteredStatelessBean.class.getName());
 
+	@Override
 	public String getNodeName() {
 		LOG.info("invoke getNodeName()");
 		try {

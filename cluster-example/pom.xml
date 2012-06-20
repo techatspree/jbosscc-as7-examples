@@ -10,7 +10,7 @@
 
 	<packaging>war</packaging>
 
-	<name>Cluster Web Apllication example</name>
+	<name>Cluster Web Application example</name>
 
 	<repositories>
 		<repository>
