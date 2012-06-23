@@ -25,23 +25,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.interceptor</groupId>
-			<artifactId>jboss-interceptor-api</artifactId>
+			<groupId>org.jboss.ejb3</groupId>
+			<artifactId>jboss-ejb3-ext-api</artifactId>
 			<scope>provided</scope>
-			<version>1.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.4</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.jboss.slf4j</groupId>
-			<artifactId>slf4j-jboss-logging</artifactId>
-			<version>1.0.4.GA</version>
-		</dependency>
 	</dependencies>
 
 	<build>

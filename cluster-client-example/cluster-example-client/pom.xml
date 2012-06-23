@@ -24,18 +24,15 @@
 			<groupId>de.akquinet.jbosscc</groupId>
 			<artifactId>cluster-example-server</artifactId>
 			<type>ejb</type>
+
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss</groupId>
 			<artifactId>jboss-ejb-client</artifactId>
-			<scope>runtime</scope>
+			<version>1.1.0.Beta1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss</groupId>
-			<artifactId>jboss-remote-naming</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
@@ -44,49 +41,37 @@
 		<dependency>
 			<groupId>org.jboss.marshalling</groupId>
 			<artifactId>jboss-marshalling</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.marshalling</groupId>
 			<artifactId>jboss-marshalling-river</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.remoting3</groupId>
 			<artifactId>jboss-remoting</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.sasl</groupId>
 			<artifactId>jboss-sasl</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.transaction</groupId>
 			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.spec.javax.ejb</groupId>
 			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.xnio</groupId>
 			<artifactId>xnio-api</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.xnio</groupId>
 			<artifactId>xnio-nio</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-  <groupId>org.jboss</groupId>
-  <artifactId>jboss-remote-naming</artifactId>
-  <version>1.0.1.Final</version>
-</dependency>
+
 
 	</dependencies>
 </project>
