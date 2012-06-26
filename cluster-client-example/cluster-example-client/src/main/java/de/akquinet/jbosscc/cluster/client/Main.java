@@ -1,51 +1,37 @@
 package de.akquinet.jbosscc.cluster.client;
 
-import java.util.Properties;
+import java.awt.Container;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import javax.swing.JFrame;
 
-import de.akquinet.jbosscc.cluster.ClusteredStateful;
-import de.akquinet.jbosscc.cluster.ClusteredStateless;
+import de.akquinet.jbosscc.cluster.client.gui.MainPresenter;
+import de.akquinet.jbosscc.cluster.client.gui.MainPresenterImpl;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 
-		Properties props = new Properties();
-		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-		Context context = new InitialContext(props);
+		MainPresenter mainPresenter = new MainPresenterImpl();
 
-		ClusteredStateless clusteredStatelessBeanProxy = (ClusteredStateless) context
-				.lookup("ejb:/cluster/ClusteredStatelessBean!de.akquinet.jbosscc.cluster.ClusteredStateless");
-
-		ClusteredStateful clusteredStatefulSession = getClusteredStatefulSession(context);
-
-		for (int i = 0; i < 100; i++) {
-
-			String nodeName = clusteredStatelessBeanProxy.getNodeName();
-			System.out.println("nodename: " + nodeName);
-
-			int counterValue = clusteredStatefulSession.getCounterValue();
-			System.out.println("Stateful session bean - counter value "
-					+ counterValue + " recieved from node: "
-					+ clusteredStatefulSession.getNodeName() + " proxy "
-					+ clusteredStatefulSession);
-			if (counterValue % 3 == 0) {
-				System.out.println("destroy stateful ejb on node: "
-						+ clusteredStatefulSession.getNodeName());
-				clusteredStatefulSession.destroy();
-				clusteredStatefulSession = getClusteredStatefulSession(context);
+		final JFrame frame = new JFrame("Example remote EJB client");
+		Container content = frame.getContentPane();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				frame.setVisible(false);
+				// Perform any other operations you might need
+				// before exit.
+				System.exit(0);
 			}
-		}
+		});
 
-	}
+		content.add(mainPresenter.getComponent());
+		frame.pack();
+		frame.setSize(500, 250);
+		frame.setVisible(true);
 
-	static ClusteredStateful getClusteredStatefulSession(final Context context)
-			throws Exception {
-
-		return (ClusteredStateful) context
-				.lookup("ejb:/cluster/ClusteredStatefulBean!de.akquinet.jbosscc.cluster.ClusteredStateful?stateful");
 	}
 
 }
