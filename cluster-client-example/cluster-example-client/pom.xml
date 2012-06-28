@@ -1,77 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<artifactId>cluster-client-example</artifactId>
-		<groupId>de.akquinet.jbosscc</groupId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-
-
-	<groupId>de.akquinet.jbosscc</groupId>
-	<artifactId>cluster-example-client</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>Cluster - swing client example</name>
-
-	<dependencies>
-
-		<dependency>
-			<groupId>de.akquinet.jbosscc</groupId>
-			<artifactId>cluster-example-server</artifactId>
-			<type>ejb</type>
-
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss</groupId>
-			<artifactId>jboss-ejb-client</artifactId>
-
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.marshalling</groupId>
-			<artifactId>jboss-marshalling</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.marshalling</groupId>
-			<artifactId>jboss-marshalling-river</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.remoting3</groupId>
-			<artifactId>jboss-remoting</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.sasl</groupId>
-			<artifactId>jboss-sasl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.transaction</groupId>
-			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.xnio</groupId>
-			<artifactId>xnio-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.xnio</groupId>
-			<artifactId>xnio-nio</artifactId>
-		</dependency>
+    <parent>
+        <artifactId>cluster-client-example</artifactId>
+        <groupId>de.akquinet.jbosscc</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
 
+    <groupId>de.akquinet.jbosscc</groupId>
+    <artifactId>cluster-example-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-	</dependencies>
+    <name>Cluster - swing client example</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>de.akquinet.jbosscc</groupId>
+            <artifactId>cluster-example-server</artifactId>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>de.akquinet.jbosscc</groupId>
+            <artifactId>cluster-example-server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jboss-ejb-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling-river</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.remoting3</groupId>
+            <artifactId>jboss-remoting</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.sasl</groupId>
+            <artifactId>jboss-sasl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.1_spec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.xnio</groupId>
+            <artifactId>xnio-nio</artifactId>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.swinglabs</groupId>-->
+            <!--<artifactId>swingx-core</artifactId>-->
+            <!--<version>1.6.2-2</version>-->
+        <!--</dependency>-->
+
+    </dependencies>
 </project>

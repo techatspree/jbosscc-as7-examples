@@ -1,79 +1,95 @@
 package de.akquinet.jbosscc.cluster.client.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JComponent;
-
 import de.akquinet.jbosscc.cluster.ClusteredStateful;
 import de.akquinet.jbosscc.cluster.ClusteredStateless;
 import de.akquinet.jbosscc.cluster.client.Server;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class MainPresenterImpl implements MainPresenter {
 
-	private final Display display;
-	private final Server server;
+    private final Display display;
+    private final Server server;
 
-	private ClusteredStateful clusteredStatefulSession;
-	private ClusteredStateless clusteredStatelessProxy;
+    private ClusteredStateful clusteredStatefulSession;
+    private ClusteredStateless clusteredStatelessProxy;
 
-	public MainPresenterImpl() throws Exception {
-		super();
+    public MainPresenterImpl() throws Exception {
+        super();
 
-		this.display = new MainDisplay();
-		server = new Server();
-		bind();
-	}
+        this.display = new MainDisplay();
+        server = new Server();
+        bind();
+    }
 
-	private void bind() throws Exception {
-		clusteredStatelessProxy = server.getClusteredStatelessProxy();
+    private void bind() throws Exception {
+        clusteredStatelessProxy = server.getClusteredStatelessProxy();
 
-		display.setCreateSfsbActionListenet(new ActionListener() {
+        display.setCreateSfsbActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				try {
-					clusteredStatefulSession = server
-							.getClusteredStatefulSession();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    clusteredStatefulSession = server
+                            .getClusteredStatefulSession();
+                    display.toggleBetweenCreatableAndDestroyable();
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    JXErrorPane.showDialog(e);
+                    ErrorDialog.showError("Cannot create clustered stateful session.", e);
+                }
+            }
+        });
 
-		display.setDestroySfsbActionListenet(new ActionListener() {
+        display.setDestroySfsbActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    clusteredStatefulSession.destroy();
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    JXErrorPane.showDialog(e);
+                    ErrorDialog.showError("Cannot destroy clustered stateful session.", e);
+                }
+                display.toggleBetweenCreatableAndDestroyable();
+            }
+        });
 
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				clusteredStatefulSession.destroy();
+        display.setInvokeSfsbActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    int counterValue = clusteredStatefulSession.getCounterValue();
+                    display.setSfsbCounterValue(counterValue);
+                    String nodeName = clusteredStatefulSession.getNodeName();
+                    display.setSfsbNode(nodeName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    JXErrorPane.showDialog(e);
+                    ErrorDialog.showError("Cannot invoke on clustered SFSB.", e);
+                }
+            }
+        });
 
-			}
-		});
+        display.setSlsbActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                try {
+                    String nodeName = clusteredStatelessProxy.getNodeName();
+                    display.setSlsbNode(nodeName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+//                    JXErrorPane.showDialog(e);
+                    ErrorDialog.showError("Cannot invoke on clustered SLSB.", e);
+                }
+            }
+        });
+    }
 
-		display.setInvokeSfsbActionListenet(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				int counterValue = clusteredStatefulSession.getCounterValue();
-				display.setCounterValue(counterValue);
-				display.setSfsbNode(clusteredStatefulSession.getNodeName());
-			}
-		});
-
-		display.setSlsbActionListenet(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent event) {
-				display.setSlsbNode(clusteredStatelessProxy.getNodeName());
-
-			}
-		});
-
-	}
-
-	@Override
-	public JComponent getComponent() {
-		return display.asComponent();
-	}
-
+    @Override
+    public JComponent getComponent() {
+        return display.asComponent();
+    }
 }

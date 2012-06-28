@@ -1,28 +1,28 @@
 package de.akquinet.jbosscc.cluster.client.gui;
 
+import javax.swing.*;
 import java.awt.event.ActionListener;
 
-import javax.swing.JComponent;
-
 public interface MainPresenter {
-	interface Display {
-		JComponent asComponent();
+    interface Display {
+        JComponent asComponent();
 
-		void setSlsbNode(String result);
+        void setSlsbNode(String result);
 
-		void setSlsbActionListenet(ActionListener actionListener);
+        void setSlsbActionListener(ActionListener actionListener);
 
-		void setCreateSfsbActionListenet(ActionListener actionListener);
+        void setCreateSfsbActionListener(ActionListener actionListener);
 
-		void setInvokeSfsbActionListenet(ActionListener actionListener);
+        void setInvokeSfsbActionListener(ActionListener actionListener);
 
-		void setDestroySfsbActionListenet(ActionListener actionListener);
+        void setDestroySfsbActionListener(ActionListener actionListener);
 
-		void setCounterValue(int value);
+        void setSfsbCounterValue(int value);
 
-		void setSfsbNode(String node);
+        void setSfsbNode(String node);
 
-	}
+        void toggleBetweenCreatableAndDestroyable();
+    }
 
-	JComponent getComponent();
+    JComponent getComponent();
 }
