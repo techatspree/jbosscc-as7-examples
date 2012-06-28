@@ -3,6 +3,7 @@ package de.akquinet.jbosscc.cluster.client.gui;
 import de.akquinet.jbosscc.cluster.ClusteredStateful;
 import de.akquinet.jbosscc.cluster.ClusteredStateless;
 import de.akquinet.jbosscc.cluster.client.Server;
+import org.jdesktop.swingx.JXErrorPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -37,8 +38,7 @@ public class MainPresenterImpl implements MainPresenter {
                     display.toggleBetweenCreatableAndDestroyable();
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    JXErrorPane.showDialog(e);
-                    ErrorDialog.showError("Cannot create clustered stateful session.", e);
+                    JXErrorPane.showDialog(e);
                 }
             }
         });
@@ -50,8 +50,7 @@ public class MainPresenterImpl implements MainPresenter {
                     clusteredStatefulSession.destroy();
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    JXErrorPane.showDialog(e);
-                    ErrorDialog.showError("Cannot destroy clustered stateful session.", e);
+                    JXErrorPane.showDialog(e);
                 }
                 display.toggleBetweenCreatableAndDestroyable();
             }
@@ -67,8 +66,7 @@ public class MainPresenterImpl implements MainPresenter {
                     display.setSfsbNode(nodeName);
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    JXErrorPane.showDialog(e);
-                    ErrorDialog.showError("Cannot invoke on clustered SFSB.", e);
+                    JXErrorPane.showDialog(e);
                 }
             }
         });
@@ -81,8 +79,7 @@ public class MainPresenterImpl implements MainPresenter {
                     display.setSlsbNode(nodeName);
                 } catch (Exception e) {
                     e.printStackTrace();
-//                    JXErrorPane.showDialog(e);
-                    ErrorDialog.showError("Cannot invoke on clustered SLSB.", e);
+                    JXErrorPane.showDialog(e);
                 }
             }
         });
