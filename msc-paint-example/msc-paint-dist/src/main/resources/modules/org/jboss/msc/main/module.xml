@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module xmlns="urn:jboss:module:1.1" name="org.jboss.msc">
+
+    <main-class name="org.jboss.msc.Version"/>
+
+    <resources>
+        <resource-root path="jboss-msc-1.0.2.GA.jar"/>
+        <!-- Insert resources here -->
+    </resources>
+
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="org.jboss.logging"/>
+        <module name="org.jboss.modules"/>
+
+        <!-- Optional deps -->
+
+        <module name="javax.inject.api" optional="true"/>
+        <module name="org.jboss.threads" optional="true"/>
+        <module name="org.jboss.vfs" optional="true"/>
+    </dependencies>
+</module>

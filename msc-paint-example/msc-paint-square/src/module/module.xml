@@ -1,0 +1,12 @@
+<module xmlns="urn:jboss:module:1.0" name="${project.groupId}.${project.artifactId}">
+
+    <resources>
+        <resource-root path="${project.artifactId}-${version}.jar"/>
+    </resources>
+
+    <dependencies>
+		<module name="de.akquinet.jbosscc.msc-paint-shape" export="true"/>
+		<module name="org.jboss.msc" export="true"/>
+		<module name="javax.api" />
+    </dependencies>
+</module>

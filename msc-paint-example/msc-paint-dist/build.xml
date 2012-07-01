@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="msc-paint-example" default="dist">
+
+	<property name="modules.dir" location="target/${ant.project.name}/modules" />
+
+	<target name="copy-modules">
+		<copy-module module="msc-paint-main" />
+		<copy-module module="msc-paint-shape" />
+		<copy-module module="msc-paint-circle" />
+		<copy-module module="msc-paint-square" />
+		<copy-module module="msc-paint-frame" />
+
+		<copy todir="${modules.dir}" overwrite="false">
+			<fileset dir="src/main/resources/modules" />
+		</copy>
+	</target>
+
+
+	<macrodef name="copy-module">
+		<attribute name="module" />
+
+		<sequential>
+			<copy todir="${modules.dir}" overwrite="false">
+				<fileset dir="../@{module}/target/modules" />
+			</copy>
+
+			<copy todir="${modules.dir}/de/akquinet/jbosscc/@{module}/main" file="../@{module}/target/@{module}-1.0-SNAPSHOT.jar" />
+
+		</sequential>
+	</macrodef>
+
+	<target name="dist" depends="copy-modules">
+	</target>
+
+</project>

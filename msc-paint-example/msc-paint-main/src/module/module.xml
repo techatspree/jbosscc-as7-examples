@@ -1,0 +1,18 @@
+<module xmlns="urn:jboss:module:1.0" name="${project.groupId}.${project.artifactId}">
+
+	<main-class name="de.akquinet.jbosscc.msc.Main" />
+
+    <resources>
+        <resource-root path="${project.artifactId}-${version}.jar"/>
+    </resources>
+
+	<dependencies>
+		<module name="javax.api"/>
+		<module name="org.jboss.msc" export="true"/>
+		<module name="org.jboss.modules"/>
+		<module name="de.akquinet.jbosscc.msc-paint-shape" export="true"/>
+		<module name="de.akquinet.jbosscc.msc-paint-circle" services="import" optional="true" />
+		<module name="de.akquinet.jbosscc.msc-paint-square" services="import" optional="true"/>
+		<module name="de.akquinet.jbosscc.msc-paint-frame"/>
+    </dependencies>
+</module>
