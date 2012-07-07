@@ -8,11 +8,12 @@
 
 	<dependencies>
 		<module name="javax.api"/>
-		<module name="org.jboss.msc" export="true"/>
+		<module name="org.jboss.msc"/>
 		<module name="org.jboss.modules"/>
-		<module name="de.akquinet.jbosscc.msc-paint-shape" export="true"/>
+		<module name="de.akquinet.jbosscc.msc-paint-shape"/>
 		<module name="de.akquinet.jbosscc.msc-paint-circle" services="import" optional="true" />
 		<module name="de.akquinet.jbosscc.msc-paint-square" services="import" optional="true"/>
+		<module name="de.akquinet.jbosscc.msc-paint-triangle" services="import" optional="true"/>
 		<module name="de.akquinet.jbosscc.msc-paint-frame"/>
     </dependencies>
 </module>

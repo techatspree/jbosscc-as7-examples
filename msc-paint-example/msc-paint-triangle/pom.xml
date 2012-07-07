@@ -9,9 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>msc-paint-square</artifactId>
+	<artifactId>msc-paint-triangle</artifactId>
 	<packaging>jar</packaging>
-	<name>MSC paint square</name>
+	<name>MSC paint triangle</name>
 
 	<dependencies>
 		<dependency>

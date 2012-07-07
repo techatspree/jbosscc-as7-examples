@@ -9,6 +9,7 @@
 		<copy-module module="msc-paint-shape" />
 		<copy-module module="msc-paint-circle" />
 		<copy-module module="msc-paint-square" />
+		<copy-module module="msc-paint-triangle" />
 		<copy-module module="msc-paint-frame" />
 
 		<copy todir="${modules.dir}" overwrite="false">

@@ -11,9 +11,7 @@
 
 	<artifactId>msc-paint-frame</artifactId>
 	<packaging>jar</packaging>
-	<name>MSC Service example</name>
-
-
+	<name>MSC paint canvas</name>
 
 	<dependencies>
 		<dependency>
@@ -21,8 +19,5 @@
 			<artifactId>msc-paint-shape</artifactId>
 		</dependency>
 	</dependencies>
-
-
-
 
 </project>

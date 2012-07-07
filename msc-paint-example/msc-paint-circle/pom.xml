@@ -13,18 +13,11 @@
 	<packaging>jar</packaging>
 	<name>MSC paint circle</name>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>de.akquinet.jbosscc</groupId>
 			<artifactId>msc-paint-shape</artifactId>
 		</dependency>
 	</dependencies>
-
-
-
-
-
 
 </project>

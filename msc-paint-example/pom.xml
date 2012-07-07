@@ -57,10 +57,21 @@
 				<artifactId>msc-paint-square</artifactId>
 				<version>1.0-SNAPSHOT</version>
 			</dependency>
+
+			<dependency>
+				<groupId>de.akquinet.jbosscc</groupId>
+				<artifactId>msc-paint-triangle</artifactId>
+				<version>1.0-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.modules</groupId>
+				<artifactId>jboss-modules</artifactId>
+				<version>1.1.2.GA</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
-
-
 
 
 	<dependencies>
@@ -81,38 +92,6 @@
 			<artifactId>jboss-logging</artifactId>
 			<version>3.1.1.GA</version>
 		</dependency>
-
-
-		<!-- Test dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.easymock</groupId>
-			<artifactId>easymock</artifactId>
-			<version>3.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>de.akquinet.jbosscc</groupId>
-			<artifactId>jbosscc-needle</artifactId>
-			<version>2.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.6.4</version>
-			<scope>test</scope>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -130,38 +109,23 @@
 				<plugin>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>2.4</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>test-jar</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<archive>
-							<manifest>
-								<addClasspath>true</addClasspath>
-							</manifest>
-						</archive>
-					</configuration>
 				</plugin>
+
 				<plugin>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>2.5</version>
 				</plugin>
+
 				<plugin>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>2.3</version>
 				</plugin>
-
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
-
-
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -182,9 +146,7 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
-
 	</build>
 
 	<modules>
@@ -193,6 +155,7 @@
 		<module>msc-paint-shape</module>
 		<module>msc-paint-circle</module>
 		<module>msc-paint-square</module>
+		<module>msc-paint-triangle</module>
 		<module>msc-paint-dist</module>
 	</modules>
 

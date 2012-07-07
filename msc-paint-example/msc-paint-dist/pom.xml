@@ -12,6 +12,7 @@
 	<artifactId>msc-paint-dist</artifactId>
 	<packaging>pom</packaging>
 
+	<name>MSC paint distribution</name>
 
 
 	<dependencies>
@@ -31,28 +32,17 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.msc</groupId>
-			<artifactId>jboss-msc</artifactId>
-			<version>1.0.2.GA</version>
+			<groupId>de.akquinet.jbosscc</groupId>
+			<artifactId>msc-paint-triangle</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.modules</groupId>
 			<artifactId>jboss-modules</artifactId>
-			<version>1.1.2.GA</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<version>3.1.1.GA</version>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>
-
 		<plugins>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -96,11 +86,9 @@
 							<goal>run</goal>
 						</goals>
 					</execution>
-
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
