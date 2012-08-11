@@ -1,0 +1,8 @@
+
+Description
+-----------
+
+This Demo shows the usage of the dmr api for management tasks.
+
+The implementation is equivalent to the following CLI command:
+	/subsystem=web/connector=http:read-resource-description(recursive=true,operations=true)
