@@ -9,7 +9,6 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-
 	<groupId>de.akquinet.jbosscc</groupId>
 	<artifactId>cluster-example-server</artifactId>
 	<version>1.0-SNAPSHOT</version>
@@ -29,12 +28,9 @@
 			<artifactId>jboss-ejb3-ext-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
 		<finalName>cluster-example-server</finalName>
 	</build>
-
 </project>

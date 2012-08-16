@@ -1,31 +1,33 @@
 package de.akquinet.jbosscc.cluster.client;
 
-import java.util.Properties;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-
 import de.akquinet.jbosscc.cluster.ClusteredStateful;
 import de.akquinet.jbosscc.cluster.ClusteredStateless;
 
-public class Server {
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
-	private Context context;
+public class Server
+{
+    private final Context context;
 
-	public Server() throws Exception {
-		Properties props = new Properties();
-		props.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
-		context = new InitialContext(props);
-	}
+    public Server() throws NamingException
+    {
+//        Properties jndiProperties = new Properties();
+//        jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+//        context = new InitialContext(jndiProperties);
+        context = new InitialContext();
+    }
 
-	public ClusteredStateful getClusteredStatefulSession() throws Exception {
+    public ClusteredStateless getClusteredStatelessProxy() throws Exception
+    {
+        return (ClusteredStateless) context.lookup(
+                "ejb:/cluster//ClusteredStatelessBean!de.akquinet.jbosscc.cluster.ClusteredStateless");
+    }
 
-		return (ClusteredStateful) context
-				.lookup("ejb:/cluster/ClusteredStatefulBean!de.akquinet.jbosscc.cluster.ClusteredStateful?stateful");
-	}
-
-	public ClusteredStateless getClusteredStatelessProxy() throws Exception {
-		return (ClusteredStateless) context
-				.lookup("ejb:/cluster/ClusteredStatelessBean!de.akquinet.jbosscc.cluster.ClusteredStateless");
-	}
+    public ClusteredStateful getClusteredStatefulSession() throws Exception
+    {
+        return (ClusteredStateful) context.lookup(
+                "ejb:/cluster//ClusteredStatefulBean!de.akquinet.jbosscc.cluster.ClusteredStateful?stateful");
+    }
 }

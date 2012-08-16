@@ -2,18 +2,24 @@ package de.akquinet.jbosscc.cluster;
 
 import org.jboss.ejb.client.ClusterNodeSelector;
 
-public class RoundRobinClusterNodeSelector implements ClusterNodeSelector {
+public class RoundRobinClusterNodeSelector implements ClusterNodeSelector
+{
+    private int nodeIndex;
 
-	private int nodeIndex;
+    @Override
+    public String selectNode(String clusterName, String[] connectedNodes, String[] availableNodes)
+    {
+//        String selectedNode = availableNodes[nodeIndex++ % availableNodes.length];
+        String selectedNode;
 
-	@Override
-	public String selectNode(final String clusterName,
-			final String[] connectedNodes, final String[] availableNodes) {
-
-		String selectedNode = availableNodes[nodeIndex++ % availableNodes.length];
-		System.out.println("selected node: " + selectedNode);
-		return selectedNode;
-
-	}
-
+        if (connectedNodes.length > 0) {
+            selectedNode = connectedNodes[nodeIndex++ % connectedNodes.length];
+        } else {
+//            nodeIndex = 0;
+            nodeIndex = availableNodes.length - 1;
+            selectedNode = availableNodes[nodeIndex++];
+        }
+        System.out.println("selected node: " + selectedNode);
+        return selectedNode;
+    }
 }

@@ -9,7 +9,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPresenterImpl implements MainPresenter {
+public class MainPresenterImpl implements MainPresenter
+{
 
     private final Display display;
     private final Server server;
@@ -17,24 +18,25 @@ public class MainPresenterImpl implements MainPresenter {
     private ClusteredStateful clusteredStatefulSession;
     private ClusteredStateless clusteredStatelessProxy;
 
-    public MainPresenterImpl() throws Exception {
-        super();
-
-        this.display = new MainDisplay();
+    public MainPresenterImpl() throws Exception
+    {
+        display = new MainDisplay();
         server = new Server();
         bind();
     }
 
-    private void bind() throws Exception {
+    private void bind() throws Exception
+    {
         clusteredStatelessProxy = server.getClusteredStatelessProxy();
 
-        display.setCreateSfsbActionListener(new ActionListener() {
+        display.setCreateSfsbActionListener(new ActionListener()
+        {
 
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
-                    clusteredStatefulSession = server
-                            .getClusteredStatefulSession();
+                    clusteredStatefulSession = server.getClusteredStatefulSession();
                     display.toggleBetweenCreatableAndDestroyable();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -43,9 +45,11 @@ public class MainPresenterImpl implements MainPresenter {
             }
         });
 
-        display.setDestroySfsbActionListener(new ActionListener() {
+        display.setDestroySfsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
                     clusteredStatefulSession.destroy();
                 } catch (Exception e) {
@@ -56,9 +60,11 @@ public class MainPresenterImpl implements MainPresenter {
             }
         });
 
-        display.setInvokeSfsbActionListener(new ActionListener() {
+        display.setInvokeSfsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
                     int counterValue = clusteredStatefulSession.getCounterValue();
                     display.setSfsbCounterValue(counterValue);
@@ -71,9 +77,11 @@ public class MainPresenterImpl implements MainPresenter {
             }
         });
 
-        display.setSlsbActionListener(new ActionListener() {
+        display.setSlsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
                     String nodeName = clusteredStatelessProxy.getNodeName();
                     display.setSlsbNode(nodeName);
@@ -86,7 +94,8 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public JComponent getComponent() {
+    public JComponent getComponent()
+    {
         return display.asComponent();
     }
 }

@@ -11,5 +11,4 @@ public interface ClusteredStateful {
 	int getCounterValue();
 
 	String getNodeName();
-
 }
