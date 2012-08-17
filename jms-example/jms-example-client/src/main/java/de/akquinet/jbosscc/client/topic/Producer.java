@@ -4,7 +4,6 @@ import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.MessageProducer;
-import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
@@ -13,19 +12,46 @@ import de.akquinet.jbosscc.client.JndiLookup;
 
 public class Producer {
 
+	private String user;
+	private String pass;
+
 	private ConnectionFactory connectionFactory;
 	private Topic topic;
 
 	public static void main(String[] args) throws Exception {
-		Producer sender = new Producer();
-		sender.sendTextMessages("Hello World!");
+
+		Producer sender;
+
+		switch (args.length) {
+		case 4:
+			sender = new Producer(args[0], args[1], args[2], args[3]);
+			break;
+		case 2:
+			sender = new Producer(args[0], args[1]);
+			break;
+		default:
+			sender = new Producer();
+		}
+
+		sender.sendTextMessages("Message number ");
 	}
 
 	public Producer() throws Exception {
-		JndiLookup jndiLookup = new JndiLookup();
+		this(null, null);
+	}
+
+	public Producer(String ip, String port) throws Exception {
+		this(ip, port, "admin", "secret");
+	}
+
+	public Producer(String ip, String port, String user, String pass)
+			throws Exception {
+		this.user = user;
+		this.pass = pass;
+		JndiLookup jndiLookup = new JndiLookup(ip, port, user, pass);
 		connectionFactory = jndiLookup.lookup(ConnectionFactory.class,
 				"jms/RemoteConnectionFactory");
-		topic = jndiLookup.lookup(Queue.class, "jms/topic/test");
+		topic = jndiLookup.lookup(Topic.class, "jms/topic/test");
 	}
 
 	private void sendTextMessages(final String text) throws Exception {
@@ -33,25 +59,34 @@ public class Producer {
 		Session session = null;
 		MessageProducer messageProducer = null;
 		try {
-			connection = connectionFactory
-					.createConnection("admin", "secret");
+			if (user != null && pass != null) {
+				connection = connectionFactory.createConnection(user, pass);
+			} else {
+				connection = connectionFactory.createConnection();
+			}
 			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 			messageProducer = session.createProducer(topic);
 			connection.start();
 			TextMessage message = session.createTextMessage();
 
-			message.setText(text);
-			messageProducer.send(message);
+			int i = 0;
+			while (true) {
+				message.setText(text + i++);
+				messageProducer.send(message);
+				Thread.sleep(250);
+			}
 
 		} finally {
 			try {
-				messageProducer.close();
-				connection.close();
-				session.close();
+				if (messageProducer != null)
+					messageProducer.close();
+				if (connection != null)
+					connection.close();
+				if (session != null)
+					session.close();
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 
