@@ -12,7 +12,7 @@ import javax.jms.Topic;
 
 import de.akquinet.jbosscc.client.JndiLookup;
 
-public class MessagesReciever implements MessageListener {
+public class MessagesReceiver implements MessageListener {
 
 	private ConnectionFactory connectionFactory;
 
@@ -23,17 +23,17 @@ public class MessagesReciever implements MessageListener {
 
 	public static void main(String[] args) throws Exception {
 
-		MessagesReciever reciever;
+		MessagesReceiver reciever;
 		
 		switch (args.length) {
 		case 4:
-			reciever = new MessagesReciever(args[0], args[1], args[2], args[3]);
+			reciever = new MessagesReceiver(args[0], args[1], args[2], args[3]);
 			break;
 		case 2:
-			reciever = new MessagesReciever(args[0], args[1]);
+			reciever = new MessagesReceiver(args[0], args[1]);
 			break;
 		default:
-			reciever = new MessagesReciever();
+			reciever = new MessagesReceiver();
 		}
 		
 		reciever.consum();
@@ -44,15 +44,15 @@ public class MessagesReciever implements MessageListener {
 
 	}
 
-	public MessagesReciever() throws Exception {
+	public MessagesReceiver() throws Exception {
 		this(null, null);
 	}
 	
-	public MessagesReciever(String ip, String port) throws Exception {
+	public MessagesReceiver(String ip, String port) throws Exception {
 		this(ip, port, "admin", "secret");
 	}
 
-	public MessagesReciever(String ip, String port, String user, String pass) throws Exception {
+	public MessagesReceiver(String ip, String port, String user, String pass) throws Exception {
 		this.user = user;
 		this.pass = pass;
 		JndiLookup jndiLookup = new JndiLookup(ip, port, user, pass);
