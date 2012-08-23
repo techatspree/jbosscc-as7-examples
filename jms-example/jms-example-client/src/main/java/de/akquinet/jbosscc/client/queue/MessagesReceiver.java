@@ -1,4 +1,4 @@
-package de.akquinet.jbosscc.client.topic;
+package de.akquinet.jbosscc.client.queue;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -6,9 +6,9 @@ import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
+import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
-import javax.jms.Topic;
 
 import de.akquinet.jbosscc.client.JndiLookup;
 
@@ -16,7 +16,7 @@ public class MessagesReceiver implements MessageListener {
 
 	private ConnectionFactory connectionFactory;
 
-	private Topic topic;
+	private Queue queue;
 	
 	private String user;
 	private String pass;
@@ -58,7 +58,7 @@ public class MessagesReceiver implements MessageListener {
 		JndiLookup jndiLookup = new JndiLookup(ip, port, user, pass);
 		connectionFactory = jndiLookup.lookup(ConnectionFactory.class,
 				"jms/RemoteConnectionFactory");
-		topic = jndiLookup.lookup(Topic.class, "jms/topic/test");
+		queue = jndiLookup.lookup(Queue.class, "jms/queue/test");
 	}
 
 	private void consum() throws Exception {
@@ -73,7 +73,7 @@ public class MessagesReceiver implements MessageListener {
 		final Session session = connection.createSession(false,
 				Session.AUTO_ACKNOWLEDGE);
 
-		final MessageConsumer consumer = session.createConsumer(topic);
+		final MessageConsumer consumer = session.createConsumer(queue);
 
 		consumer.setMessageListener(this);
 
