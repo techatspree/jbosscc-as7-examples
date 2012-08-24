@@ -9,9 +9,9 @@ import java.net.UnknownHostException;
 import java.util.logging.Logger;
 
 @Stateless
-@Remote(ClusteredStateless.class)
+@Remote(RemoteStateless.class)
 @Clustered
-public class ClusteredStatelessBean implements ClusteredStateless
+public class ClusteredStatelessBean implements RemoteStateless
 {
     private final static Logger LOG = Logger.getLogger(ClusteredStatelessBean.class.getName());
 
@@ -19,11 +19,10 @@ public class ClusteredStatelessBean implements ClusteredStateless
     public String getNodeName()
     {
         LOG.info("invoke getNodeName()");
+
+        String nodeName = System.getProperty("jboss.node.name");
         try {
-            String nodeName = System.getProperty("jboss.node.name");
-
             return nodeName != null ? nodeName : InetAddress.getLocalHost().getHostName();
-
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

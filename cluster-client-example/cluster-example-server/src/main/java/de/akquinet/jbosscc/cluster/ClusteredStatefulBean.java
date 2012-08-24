@@ -9,17 +9,17 @@ import java.util.logging.Logger;
 
 @Stateful
 @Clustered
-@Remote(ClusteredStateful.class)
-public class ClusteredStatefulBean implements ClusteredStateful
+@Remote(RemoteStateful.class)
+public class ClusteredStatefulBean implements RemoteStateful
 {
     private final static Logger LOG = Logger.getLogger(ClusteredStatefulBean.class.getName());
 
     private int counter = 1;
 
     @Override
-    public int getCounterValue()
+    public int getAndIncrementCounter()
     {
-        LOG.info("invoke getCounter()");
+        LOG.info("invoke getAndIncrementCounter()");
         return counter++;
     }
 
@@ -27,11 +27,10 @@ public class ClusteredStatefulBean implements ClusteredStateful
     public String getNodeName()
     {
         LOG.info("invoke getNodeName()");
+
+        String nodeName = System.getProperty("jboss.node.name");
         try {
-            String nodeName = System.getProperty("jboss.node.name");
-
             return nodeName != null ? nodeName : InetAddress.getLocalHost().getHostName();
-
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }

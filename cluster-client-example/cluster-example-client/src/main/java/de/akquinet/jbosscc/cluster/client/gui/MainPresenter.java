@@ -3,8 +3,10 @@ package de.akquinet.jbosscc.cluster.client.gui;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public interface MainPresenter {
-    interface Display {
+public interface MainPresenter
+{
+    interface Display
+    {
         JComponent asComponent();
 
         void setSlsbNode(String result);

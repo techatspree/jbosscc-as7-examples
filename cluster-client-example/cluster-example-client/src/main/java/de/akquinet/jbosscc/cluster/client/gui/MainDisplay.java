@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class MainDisplay extends JPanel implements Display {
-
+public class MainDisplay extends JPanel implements Display
+{
     private static final long serialVersionUID = 1L;
 
     // SLSB
@@ -22,7 +22,8 @@ public class MainDisplay extends JPanel implements Display {
     private JTextField sfsbCounterValue = new JTextField(2);
     private JTextField currentSfsbNode = new JTextField(6);
 
-    public MainDisplay() {
+    public MainDisplay()
+    {
         super(new GridBagLayout());
 
         JPanel slsbPanel = new JPanel(new GridBagLayout());
@@ -102,42 +103,50 @@ public class MainDisplay extends JPanel implements Display {
     }
 
 
-    public JComponent asComponent() {
+    public JComponent asComponent()
+    {
         return this;
     }
 
     @Override
-    public void setSlsbActionListener(ActionListener actionListener) {
+    public void setSlsbActionListener(ActionListener actionListener)
+    {
         invokeSlsbProxyButton.addActionListener(actionListener);
     }
 
     @Override
-    public void setCreateSfsbActionListener(ActionListener actionListener) {
+    public void setCreateSfsbActionListener(ActionListener actionListener)
+    {
         createSfsbButton.addActionListener(actionListener);
     }
 
     @Override
-    public void setDestroySfsbActionListener(ActionListener actionListener) {
+    public void setDestroySfsbActionListener(ActionListener actionListener)
+    {
         destroySfsbButton.addActionListener(actionListener);
     }
 
     @Override
-    public void setInvokeSfsbActionListener(ActionListener actionListener) {
+    public void setInvokeSfsbActionListener(ActionListener actionListener)
+    {
         invokeSfsbButton.addActionListener(actionListener);
     }
 
     @Override
-    public void setSlsbNode(final String result) {
+    public void setSlsbNode(final String result)
+    {
         currentSlsbNode.setText(result);
     }
 
     @Override
-    public void setSfsbCounterValue(final int value) {
+    public void setSfsbCounterValue(final int value)
+    {
         sfsbCounterValue.setText(String.valueOf(value));
     }
 
     @Override
-    public void setSfsbNode(final String node) {
+    public void setSfsbNode(final String node)
+    {
         currentSfsbNode.setText(node);
     }
 
