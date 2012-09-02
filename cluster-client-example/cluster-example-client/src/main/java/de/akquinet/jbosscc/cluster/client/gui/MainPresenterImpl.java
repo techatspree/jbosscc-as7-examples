@@ -1,40 +1,58 @@
 package de.akquinet.jbosscc.cluster.client.gui;
 
-import de.akquinet.jbosscc.cluster.ClusteredStateful;
-import de.akquinet.jbosscc.cluster.ClusteredStateless;
-import de.akquinet.jbosscc.cluster.client.Server;
+import de.akquinet.jbosscc.cluster.RemoteStateful;
+import de.akquinet.jbosscc.cluster.RemoteStateless;
+import de.akquinet.jbosscc.cluster.client.RemoteEJBClient;
 import org.jdesktop.swingx.JXErrorPane;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPresenterImpl implements MainPresenter {
-
+public class MainPresenterImpl implements MainPresenter
+{
     private final Display display;
-    private final Server server;
 
-    private ClusteredStateful clusteredStatefulSession;
-    private ClusteredStateless clusteredStatelessProxy;
+    private final RemoteEJBClient remoteEJBClient;
 
-    public MainPresenterImpl() throws Exception {
-        super();
+    private RemoteStateless statelessProxy;
+    private RemoteStateful statefulSession;
 
-        this.display = new MainDisplay();
-        server = new Server();
-        bind();
-    }
+    public MainPresenterImpl() throws Exception
+    {
+        display = new MainDisplay();
 
-    private void bind() throws Exception {
-        clusteredStatelessProxy = server.getClusteredStatelessProxy();
+        remoteEJBClient = new RemoteEJBClient();
 
-        display.setCreateSfsbActionListener(new ActionListener() {
+        try {
+            statelessProxy = remoteEJBClient.lookupRemoteStatelessBean();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JXErrorPane.showDialog(e);
+        }
 
+        display.setSlsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
-                    clusteredStatefulSession = server
-                            .getClusteredStatefulSession();
+                    String nodeName = statelessProxy.getNodeName();
+                    display.setSlsbNode(nodeName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JXErrorPane.showDialog(e);
+                }
+            }
+        });
+
+        display.setCreateSfsbActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                try {
+                    statefulSession = remoteEJBClient.lookupRemoteStatefulBean();
                     display.toggleBetweenCreatableAndDestroyable();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -43,11 +61,13 @@ public class MainPresenterImpl implements MainPresenter {
             }
         });
 
-        display.setDestroySfsbActionListener(new ActionListener() {
+        display.setDestroySfsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
-                    clusteredStatefulSession.destroy();
+                    statefulSession.destroy();
                 } catch (Exception e) {
                     e.printStackTrace();
                     JXErrorPane.showDialog(e);
@@ -56,27 +76,16 @@ public class MainPresenterImpl implements MainPresenter {
             }
         });
 
-        display.setInvokeSfsbActionListener(new ActionListener() {
+        display.setInvokeSfsbActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent event) {
+            public void actionPerformed(ActionEvent event)
+            {
                 try {
-                    int counterValue = clusteredStatefulSession.getCounterValue();
+                    int counterValue = statefulSession.getAndIncrementCounter();
                     display.setSfsbCounterValue(counterValue);
-                    String nodeName = clusteredStatefulSession.getNodeName();
+                    String nodeName = statefulSession.getNodeName();
                     display.setSfsbNode(nodeName);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    JXErrorPane.showDialog(e);
-                }
-            }
-        });
-
-        display.setSlsbActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                try {
-                    String nodeName = clusteredStatelessProxy.getNodeName();
-                    display.setSlsbNode(nodeName);
                 } catch (Exception e) {
                     e.printStackTrace();
                     JXErrorPane.showDialog(e);
@@ -86,7 +95,8 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public JComponent getComponent() {
+    public JComponent getComponent()
+    {
         return display.asComponent();
     }
 }
