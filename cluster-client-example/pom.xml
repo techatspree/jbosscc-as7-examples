@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 	<name>Cluster - client example - Parent</name>
 
-
 	<repositories>
 		<repository>
 			<id>jboss-public-repository-group</id>
@@ -33,7 +32,6 @@
 
 	<dependencyManagement>
 		<dependencies>
-
 			<dependency>
 				<groupId>de.akquinet.jbosscc</groupId>
 				<artifactId>cluster-example-server</artifactId>
@@ -52,17 +50,18 @@
 			<dependency>
 				<groupId>org.jboss.spec</groupId>
 				<artifactId>jboss-javaee-6.0</artifactId>
-				<version>2.0.0.Final</version>
+                <version>3.0.0.Final-redhat-1</version>
+				<!--<version>2.0.0.Final</version>-->
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
-
 			<dependency>
 				<groupId>org.jboss.as</groupId>
 				<artifactId>jboss-as-ejb-client-bom</artifactId>
-				<version>7.2.0.Alpha1-SNAPSHOT</version>
-				<type>pom</type>
+				<!--<version>7.2.0.Alpha1-SNAPSHOT</version>-->
+                <version>7.1.2.Final-redhat-1</version>
+                <type>pom</type>
 				<scope>import</scope>
 			</dependency>
 
@@ -71,10 +70,8 @@
 				<artifactId>jboss-ejb3-ext-api</artifactId>
 				<version>2.0.0</version>
 			</dependency>
-
 		</dependencies>
 	</dependencyManagement>
-
 
 	<dependencies>
 		<!-- Test dependencies -->
@@ -105,8 +102,6 @@
 			<version>1.6.4</version>
 			<scope>test</scope>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>
@@ -153,8 +148,6 @@
 						</archive>
 						<generateClient>true</generateClient>
 					</configuration>
-
-
 				</plugin>
 			</plugins>
 		</pluginManagement>
