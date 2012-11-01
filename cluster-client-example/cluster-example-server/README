@@ -1,0 +1,38 @@
+
+1. Overview
+2. Compilation
+3. Execution
+
+1. Overview
+-----------
+
+This application is intended to be used with the RedHat EAP 6 or the JBoss AS 7. For the AS 7 we recommend to use at least version 7.1.2 which can be found as a tag on github (it needs to be compiled by executing its build.sh):
+    https://github.com/jbossas/jboss-as/tags
+
+2. Compilation
+--------------
+
+Compile the server code with maven:
+    > mvn package
+
+You will then find a JAR in the target/ directory.
+
+3. Execution
+------------
+
+You will need to start cluster-nodes and deploy the JAR into these nodes by copying it to $JBOSS_HOME/standalone/deployments/ .
+
+Start the cluster nodes with the standalone-ha.xml configuration
+    > $JBOSS_HOME/bin/standalone.sh -c=standalone-ha.xml
+
+If you start multiple cluster nodes on the same machine, you will need some more parameters to avoid conflicts:
+    > $JBOSS_HOME/bin/standalone.sh -c=standalone-ha.xml -Djboss.node.name=Server1
+    > $JBOSS_HOME/bin/standalone.sh -c=standalone-ha.xml -Djboss.node.name=Server2 -Djboss.socket.binding.port-offset=100
+
+You could also bind the different cluster nodes to different interfaces. On MacOS you can set up multiple ips on you loopback device like this
+    > sudo ifconfig lo0 alias 192.168.0.1
+    > sudo ifconfig lo0 alias 192.168.0.2
+
+Your cluster nodes would then be started like this:
+    > $JBOSS_HOME/bin/standalone.sh -c=standalone-ha.xml -Djboss.node.name=Server1 -b=192.168.0.1 -bmanagement=192.168.0.1
+    > $JBOSS_HOME/bin/standalone.sh -c=standalone-ha.xml -Djboss.node.name=Server2 -b=192.168.0.2 -bmanagement=192.168.0.2
