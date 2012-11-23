@@ -1,0 +1,15 @@
+These configurations are for the EAP 6. Maybe some version numbers need to be modified to make it work on a JBoss AS 7.1 (at least version 7.1.2 recommended).
+
+There are already some port-offsets configured into the servers:
+- live1   has 0
+- backup1 has 25
+- live2   has 100
+- backup1 has 125
+
+Also on every server there already is a user "admin" with password "123123" as both: ApplicationUser and ManagementUser.
+
+Copy the standalone/configuration/ directories into you servers and start them as follows:
+live1  : ./standalone.sh -c standalone-full-ha.xml -Djboss.node.name=jl1
+backup1: ./standalone.sh -c standalone-full-ha.xml -Djboss.node.name=jbu1
+live2  : ./standalone.sh -c standalone-full-ha.xml -Djboss.node.name=jl2
+backup2: ./standalone.sh -c standalone-full-ha.xml -Djboss.node.name=jbu2
