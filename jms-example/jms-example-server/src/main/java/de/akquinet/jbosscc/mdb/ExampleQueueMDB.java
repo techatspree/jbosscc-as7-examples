@@ -10,7 +10,7 @@ import javax.jms.TextMessage;
 @MessageDriven(activationConfig = {
 		@ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue"),
 		@ActivationConfigProperty(propertyName = "destination", propertyValue = "jms/queue/test")})
-public class ExampleMDB implements MessageListener {
+public class ExampleQueueMDB implements MessageListener {
 
 	@Override
 	public void onMessage(Message message) {
