@@ -8,10 +8,10 @@ import javax.naming.NamingException;
 
 import de.akquinet.jbosscc.remote.Calculator;
 
-public class CalculatorMain {
+public class EjbClientMain {
 
 	public static void main(String[] args) throws Exception {
-		CalculatorMain main = new CalculatorMain();
+		EjbClientMain main = new EjbClientMain();
 		Calculator calculator = main.lookup();
 		int result = calculator.add(1, 1);
 		System.out.println(result);
@@ -20,22 +20,17 @@ public class CalculatorMain {
 
 	public Calculator lookup() throws NamingException {
 
-		Properties props = new Properties();
+		Properties prop = new Properties();
+		prop.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 
-		props.put(Context.INITIAL_CONTEXT_FACTORY,
-				"org.jboss.naming.remote.client.InitialContextFactory");
-		props.put(Context.PROVIDER_URL, "remote://localhost:4447");
-		props.put(Context.SECURITY_PRINCIPAL, "admin");
-		props.put(Context.SECURITY_CREDENTIALS, "secret");
-
-		final Context context = new InitialContext(props);
+		final Context context = new InitialContext(prop);
 		final String appName = "";
 		final String moduleName = "remote";
 		final String distinctName = "";
 		final String beanName = "calculator";
 		final String viewClassName = Calculator.class.getName();
-
-		return (Calculator) context.lookup("java:" + appName + "/" + moduleName
+		
+		return (Calculator) context.lookup("ejb:" + appName + "/" + moduleName
 				+ "/" + distinctName + "/" + beanName + "!" + viewClassName);
 	}
 }

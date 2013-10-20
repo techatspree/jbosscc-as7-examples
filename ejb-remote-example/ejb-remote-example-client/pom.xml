@@ -10,16 +10,12 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-
-	<groupId>de.akquinet.jbosscc</groupId>
 	<artifactId>ejb-remote-example-client</artifactId>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>ejb remote client</name>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>de.akquinet.jbosscc</groupId>
 			<artifactId>ejb-remote-example-server</artifactId>
@@ -27,66 +23,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss</groupId>
-			<artifactId>jboss-ejb-client</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.jboss.as</groupId>
+			<artifactId>jboss-as-ejb-client-bom</artifactId>
+			<type>pom</type>
+			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jboss</groupId>
-			<artifactId>jboss-remote-naming</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.logging</groupId>
-			<artifactId>jboss-logging</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.marshalling</groupId>
-			<artifactId>jboss-marshalling</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.marshalling</groupId>
-			<artifactId>jboss-marshalling-river</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.remoting3</groupId>
-			<artifactId>jboss-remoting</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.sasl</groupId>
-			<artifactId>jboss-sasl</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.transaction</groupId>
-			<artifactId>jboss-transaction-api_1.1_spec</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.xnio</groupId>
-			<artifactId>xnio-api</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.xnio</groupId>
-			<artifactId>xnio-nio</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-  <groupId>org.jboss</groupId>
-  <artifactId>jboss-remote-naming</artifactId>
-  <version>1.0.1.Final</version>
-</dependency>
-
 	</dependencies>
 </project>
