@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>jsf-viewparam</display-name>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secured index</web-resource-name>
+            <url-pattern>/index.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <!-- use this to restrict JSF mapping to one url-pattern -->
+    <!--<servlet>-->
+    <!--<servlet-name>Faces Servlet</servlet-name>-->
+    <!--<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>Faces Servlet</servlet-name>-->
+    <!--<url-pattern>*.xhtml</url-pattern>-->
+    <!--&lt;!&ndash;<url-pattern>/faces/*</url-pattern>&ndash;&gt;-->
+    <!--</servlet-mapping>-->
+</web-app>

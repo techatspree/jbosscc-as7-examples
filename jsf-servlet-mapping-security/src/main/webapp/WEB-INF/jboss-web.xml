@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>secure-jsf</context-root>
+</jboss-web>
