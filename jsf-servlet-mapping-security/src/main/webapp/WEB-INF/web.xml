@@ -7,7 +7,7 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>secured index</web-resource-name>
-            <url-pattern>/index.xhtml</url-pattern>
+            <url-pattern>/index.jsf</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>admin</role-name>
