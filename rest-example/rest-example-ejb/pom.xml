@@ -64,7 +64,7 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
 			<scope>provided</scope>
-			<version>2.3.2.Final</version>
+			<version>3.0.11.Final</version>
 		</dependency>
 
 		<dependency>
